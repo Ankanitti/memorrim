@@ -79,6 +79,14 @@ body {
     display: inline-block;
 }
 
+.back {
+  border-radius: 6%;
+  border: 1% solid white;
+  color: white;
+  -webkit-text-stroke: 0.2px black;
+
+}
+
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
     .app {
