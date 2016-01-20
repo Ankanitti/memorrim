@@ -46,6 +46,9 @@ $(document).ready(function(){
 
   /* emplty array for matching verif */
   var picks = [];
+  var timers = [];
+  var count = 0;
+  var penalty = 0;
 
   /* reset card to initial */
   function returnToInit(){
@@ -64,10 +67,9 @@ $(document).ready(function(){
   };
 
 
-
   /* flip event handler */
   $('.carte').on('click',function(){
-
+    timers.push($.now()); /* GET time of click */
     $(this).flip('toggle'); /* flip clicked card */
     $(this).toggleClass('selected') /* add 'selected' class for better handling */
            .toggleClass('locked'); /* lock this card to prevent subsequent re-flipping */
@@ -75,28 +77,39 @@ $(document).ready(function(){
     console.log(picks);
     if(picks.length==2){ /* condition to init verif */
       lockAll(); /* if 2 cards are selected lock all the rest */
+      penalty += (timers[0]-timers[1]); /* add time spent to penalty pool */
       console.log('Array has 2 values, matching...');
       if(picks[0]!== picks[1]){ /* IF the color codes don't match... */
         console.log('No match... returning to init...');
         setTimeout(returnToInit,1100); /* return cards to initial position */
         picks.splice(0,2); /* empty picks array for following try */
         setTimeout(unlockAll,1100); /* unlock all locked cards to proceed */
+        timers.splice(0,2);
       } else { /* IF the color codes match... */
-        console.log('Match!');
-        $('.carte.selected').toggleClass('selected') /*remove selected class AND... */
-                            .addClass('permaLock'); /* permanently lock them so that they may be flipped no longer */
-        picks.splice(0,2); /* empty picks array for following try */
-        setTimeout(unlockAll,1100); /* unlock all locked cards to proceed */
+        count += 1; /* counts the number of matched pairs */
+        timers.splice(0,2); /* empty timers array for next penalty */
+        if(count == 16){
+          console.log('All pairs matched... ending game...');
+          finalScore -= penalty;
+          console.log('Your final score is : '+finalScore+' !');
+        }else{
+          console.log('Match!');
+          $('.carte.selected').toggleClass('selected') /*remove selected class AND... */
+                              .addClass('permaLock'); /* permanently lock them so that they may be flipped no longer */
+          picks.splice(0,2); /* empty picks array for following try */
+          timers.splice(0,2);
+          setTimeout(unlockAll,1100); /* unlock all locked cards to proceed */
+          console.log(count);
+        };
       };
     };
   });
 
   /* score calc */
-  /* params : timelimit 10 000,
-     deduct points from time base on number of clicks */
-     var time = 10000;
-     var tries = 0;
-     var clicks = 0;
+  /* on flip() start a timer (ms)
+     on second flip() stop the timer and calc diff between two clicks.
+     deduct from max points the time spent 'guessing' in between two clicks */
 
+     var finalScore = 100000;
 
 });
