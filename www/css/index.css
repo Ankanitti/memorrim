@@ -161,3 +161,11 @@ h1 {
     background-repeat: no-repeat;
     background-position: center;
 }
+
+.locked {
+  pointer-events: none;
+}
+
+.permaLock {
+  pointer-events: none;
+}
