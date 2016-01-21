@@ -83,7 +83,8 @@ body {
   border: 1% solid white;
   color: white;
   -webkit-text-stroke: 0.2px black;
-
+  line-height: 22vh;
+  font-size: 3vh;
 }
 
 /* Landscape layout (with min-width) */
