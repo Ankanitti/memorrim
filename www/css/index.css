@@ -47,14 +47,14 @@ body {
 
 /* Portrait layout (default) */
 .app {
-    background-color:red;
+    background:url('../img/default.png')center;
+    background-size: cover;
     height: 100vh;
     width: 100vw;
     text-align: center;
 }
 
 .grid {
-    background-color: white;
     height: 98%;
     width: 98%;
     padding-top: 1vh;
@@ -68,7 +68,6 @@ body {
     height: 23%;
     padding-top: 0.5%;
     padding-bottom: 0.5%;
-    background-color: white;
 }
 
 .carte {
@@ -168,4 +167,69 @@ h1 {
 
 .permaLock {
   pointer-events: none;
+}
+
+.mainMenu {
+  position:absolute;
+  height: 100vh;
+  width: 100vw;
+  background: url('../img/fondApp.jpg')center;
+  background-size: cover;
+  z-index: 1000;
+  display: ;
+}
+
+.scorePanel {
+  position:absolute;
+  height: 100vh;
+  width: 100vw;
+  background: url('../img/fondApp.jpg')center;
+  background-size: cover;
+  z-index: 1001;
+  display: none;
+  font-size: 10vh;
+  color: white;
+  font-weight: 900;
+  text-shadow: 2vh 2vh black;
+}
+
+.endGame {
+  position:absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0,0,0,0.75);
+  color: white;
+  font-size: 10vh;
+  font-weight: 900;
+  text-shadow: 2vh 2vh black;
+  z-index: 1002;
+  display: none;
+}
+
+.score {
+  font-size: 25vh;
+  font-weight: 1200;
+  color:orange;
+}
+
+.board{
+  list-style: none;
+  padding:0;
+}
+
+
+.menu-btn{
+  font-size: 10vh;
+  color: white;
+  font-weight: 900;
+  text-shadow: 2vh 2vh black;
+}
+
+.newGame {
+  margin-top: 25vh;
+  padding-bottom: 10vh;
+}
+
+.oranged{
+  color:orange;
 }
